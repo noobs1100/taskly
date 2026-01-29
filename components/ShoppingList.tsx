@@ -1,7 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
-import { theme } from "./theme";
+import { TouchableOpacity, View, Alert, StyleSheet, Text } from "react-native";
+import { theme } from "../theme";
 
-export default function App() {
+type Props = {
+  name: string;
+};
+
+export function ShoppingListItem({ name }: Props) {
   const handleDelete = () => {
     Alert.alert("you sure you want it deleated", "it will be gone for good", [
       {
