@@ -1,7 +1,7 @@
 import { TouchableOpacity, View, Alert, StyleSheet, Text } from "react-native";
 import { theme } from "../theme";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type Props = {
   name: string;
@@ -27,19 +27,26 @@ export function ShoppingListItem({ name, isCompleated }: Props) {
         isCompleated ? styles.compleatedContainer : undefined,
       ]}
     >
-      <Text
-        style={[
-          styles.itemText,
-          isCompleated ? styles.compleatedText : undefined,
-        ]}
-      >
-        {name}
-      </Text>
-      <TouchableOpacity onPress={handleDelete} hitSlop={6}>
-        <AntDesign
-          name="close-circle"
-          size={20}
-          color={isCompleated ? theme.colorGrey : theme.colorRed}
+      <View style={styles.row}>
+        <Entypo
+          name={isCompleated ? "check" : "circle"}
+          size={24}
+          color={isCompleated ? theme.colorGrey : theme.colorCerulean}
+        />
+        <Text
+          style={[
+            styles.itemText,
+            isCompleated ? styles.compleatedText : undefined,
+          ]}
+        >
+          {name}
+        </Text>
+      </View>
+      <TouchableOpacity onPress={handleDelete} hitSlop={20}>
+        <MaterialIcons
+          name="delete-forever"
+          size={24}
+          color={isCompleated ? theme.colorGrey : theme.colorBlack}
         />
       </TouchableOpacity>
     </View>
@@ -49,16 +56,16 @@ export function ShoppingListItem({ name, isCompleated }: Props) {
 const styles = StyleSheet.create({
   itemcontainer: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
     paddingHorizontal: 18,
     paddingVertical: 8,
     borderBottomColor: theme.colorCerulean,
     borderBottomWidth: 1,
   },
   itemText: {
-    fontWeight: "200",
+    fontWeight: "400",
     fontSize: 20,
+    marginLeft: 8,
+    flex: 1,
   },
   compleatedContainer: {
     backgroundColor: theme.colorLightGrey,
@@ -68,5 +75,11 @@ const styles = StyleSheet.create({
     color: theme.colorGrey,
     textDecorationLine: "line-through",
     textDecorationColor: theme.colorGrey,
+    fontWeight: "300",
+  },
+  row: {
+    flexDirection: "row",
+    flex: 1,
+    alignItems: "center",
   },
 });

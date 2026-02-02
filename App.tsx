@@ -5,9 +5,10 @@ import { ShoppingListItem } from "./components/ShoppingList";
 export default function App() {
   return (
     <View style={styles.container}>
-      <ShoppingListItem name="Coffee" />
+      <ShoppingListItem name="Milk" />
       <ShoppingListItem name="Coffee" isCompleated />
-      <ShoppingListItem name="Coffee" />
+      <ShoppingListItem name="Suger" />
+      <ShoppingListItem name="linus" isCompleated />
     </View>
   );
 }
