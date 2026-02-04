@@ -1,4 +1,11 @@
-import { TouchableOpacity, View, Alert, StyleSheet, Text } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Alert,
+  StyleSheet,
+  Text,
+  Pressable,
+} from "react-native";
 import { theme } from "../theme";
 import Entypo from "@expo/vector-icons/Entypo";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -6,14 +13,21 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 type Props = {
   name: string;
   isCompleated?: boolean;
+  onDelete: () => void;
+  onToggleComplete: () => void;
 };
 
-export function ShoppingListItem({ name, isCompleated }: Props) {
+export function ShoppingListItem({
+  name,
+  isCompleated,
+  onDelete,
+  onToggleComplete,
+}: Props) {
   const handleDelete = () => {
     Alert.alert("you sure you want it deleated", "it will be gone for good", [
       {
         text: "yes",
-        onPress: () => console.log("ok deleting"),
+        onPress: () => onDelete(),
         style: "destructive",
       },
       { text: "cancel", style: "cancel" },
@@ -21,11 +35,12 @@ export function ShoppingListItem({ name, isCompleated }: Props) {
   };
 
   return (
-    <View
+    <Pressable
       style={[
         styles.itemcontainer,
         isCompleated ? styles.compleatedContainer : undefined,
       ]}
+      onPress={onToggleComplete}
     >
       <View style={styles.row}>
         <Entypo
@@ -49,7 +64,7 @@ export function ShoppingListItem({ name, isCompleated }: Props) {
           color={isCompleated ? theme.colorGrey : theme.colorBlack}
         />
       </TouchableOpacity>
-    </View>
+    </Pressable>
   );
 }
 
@@ -58,6 +73,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingHorizontal: 18,
     paddingVertical: 8,
+    marginVertical: 2,
     borderBottomColor: theme.colorCerulean,
     borderBottomWidth: 1,
   },

@@ -6,11 +6,10 @@ import { theme } from "../../theme";
 export default function Layout() {
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ title: "Counter" }} />
       <Stack.Screen
-        name="history"
+        name="index"
         options={{
-          title: "History",
+          title: "Counter",
           headerRight: () => {
             return (
               <Link href="/counter/history" asChild>
@@ -24,6 +23,12 @@ export default function Layout() {
               </Link>
             );
           },
+        }}
+      />
+      <Stack.Screen
+        name="history"
+        options={{
+          title: "History",
         }}
       />
     </Stack>
